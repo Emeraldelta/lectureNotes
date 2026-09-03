@@ -64,7 +64,10 @@ Propositional logic.
 - a set of propositional atoms (statements that can be T/F)
     --> these will be our boolean variables in logic statements
 
-
+atoms should be minimal
+p: I am hungry 
+q: I am thirsty
+P & Q
 
 - connected by logical operators
 
@@ -79,22 +82,22 @@ Propositional logic.
 
 Which ones are propositions?
 
-Today is Thursday.
+Today is Thursday. yes
 
 
-What time is it?
+What time is it? no 
 
 
-x == 2
+x == 2 yes
 
 
-Pigs can fly.
+Pigs can fly. yes
 
 
-Drive carefully.
+Drive carefully. no
 
 
-y <= 4
+y <= 4 yes
 
 
 
@@ -109,17 +112,17 @@ Suppose we have these propositional atoms:
 
 How would we express these as English sentences/conditions?
 
-    ¬p:
+    ¬p: it is not below freezing
 
-    p ∧ q:
+    p ∧ q: it is below freezing and it is snowing
 
-    p → q :
+    p → q : if it is below freezing, then it is snowing
 
-    ¬p → ¬q:
+    ¬p → ¬q: if it is not below freezing, then it is not snowing
 
-    r ∨ s:
+    r ∨ s: y <= 4 || x == 2;
 
-    ¬r:
+    ¬r: y > 4;
 
 
 ////////////////////////////////////////
@@ -131,19 +134,24 @@ Example:
 You can't enroll for the course if you haven't taken 
 the prerequisite or the course is full.
 
+Really saying: if you haven't taken the prerequisite or the course is full, then you can't enroll for the course
+
 
 --> what are the propositional atoms?
-
+p: you can enroll for the course
+q: you have taken the prerequisite
+r: the course is full
 
 
 
 --> translate to propositional logic:
+(¬q ∨ r) → ¬p
 
 
 
 What is the *contrapositive* of our statement?
-
-
+p → ¬(¬q ∨ r)
+    equivalent after DeMorgan p → q ∧ ¬r
 
 
 
@@ -161,12 +169,16 @@ if (x <= 2 || y >= 0) {
 }
 
 Propositional atoms?
+p: x <= 2
+q: y >= 0
+r: z = 17
+s: answer = 25
 
 
 
 Translation? (if ... then ...)
 
-
+(p ∨ q) ∧ ¬r → s
 
 
 
@@ -178,21 +190,21 @@ p: I am at least 16 years old
 q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
-
+p → q
 
 
 2) I'm not at least 16 years old or I can drive a car.
-
+¬p ∨ q
 
 
 
 --> are they saying the same thing?
-
+yes
 
 
 
 --> could we PROVE it? (equiv1.logika, equiv2.logika)
-
+the two statements have exactly the same output for every possible truth assignment
 
 
 
@@ -204,19 +216,21 @@ p: I am at least 16 years old
 q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
-
-
+p → q
 
 
 2) If I can drive a car, then I am at least 16 years old.
-
+q → p
 
 
 --> are they saying the same thing?
-
+no
 
 --> could we PROVE our answer?
-
+    we could find one truth assignment that makes one statement true but the other false
+    p: T  q: F
+    1 is false
+    2 is true
 
 //////////////////////////////////
 
@@ -224,10 +238,13 @@ Summary of equivalence.
 
 How do we prove two statements ARE equivalent?
 
+    complete two truth tables, demonstrate that for each possible truth assignment the statements
+    have the same output
 
 
 How do we prove two statements are NOT equivalent?
 
+    find one truth assignment that makes one statement true, but the other false
 
 
 
@@ -252,13 +269,19 @@ if (a == 4 || a == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
+    if (a != 4 && a != 5) {
 
+    }
 
 ///
 
 if (a == 4 && b == 5) {
     statements
 }
+
+    if (a != 4 || b != 5) {
+
+    }
 
 
 How could we express the NEGATION
@@ -272,9 +295,13 @@ DeMorgan's laws in propositional logic:
 
 ¬(p ∨ q) is equivalent to... 
 
+    ¬p ∧ ¬q
+
 
 
 ¬(p ∧ q) is equivalent to... 
+
+    ¬p ∨ ¬q
 
 
 ////////////////////////
