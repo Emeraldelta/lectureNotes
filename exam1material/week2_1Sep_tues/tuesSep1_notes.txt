@@ -36,10 +36,10 @@ Variables can be true or false
 
 Basic operations:
 
-∧   
-∨   
-¬   
-→   
+∧   : AND 
+∨   : OR (inclusive)
+¬   : NOT
+→   : IMPLIES
 
 
 Basic logic gates (draw on board)
@@ -49,9 +49,10 @@ gates still used to design circuits
 
 
 why do we care about equivalent circuits?
-
+    less money, less space
 
 what about programming?
+    speed, easy to read
 
 ///////////////////////////////////////////////////
 
@@ -62,28 +63,28 @@ AND:
 
 p q  #  p ∧ q
 --------------
-T T  #    
-T F  #    
-F T  #     
-F F  #    
+T T  #    T
+T F  #    F
+F T  #    F
+F F  #    F
 
 
 OR:
 
 p q  #  p ∨ q
 --------------
-T T  #    
-T F  #    
-F T  #    
-F F  #    
+T T  #    T
+T F  #    T
+F T  #    T
+F F  #    F
 
 
 NOT:
 
 p  # ¬p
 --------
-T  # 
-F  # 
+T  #  F
+F  #  T
 
 ////////////////////////////////////////////////
 
@@ -102,15 +103,19 @@ Otherwise it is true.
 
 p q  #  p → q
 --------------
-T T  #    
-T F  #      
-F T  #    
-F F  #     
+T T  #    T
+T F  #    F  
+F T  #    T
+F F  #    T
 
 /////////////////////////////////////////
 
 How does the implies operator relate to programming?
 
+    if (condition)
+    {
+        (then)
+    }
 
 
 //////////////////////////////////////////
@@ -120,9 +125,10 @@ Design circuits for:
 ¬(p ∨ q)       (p NOR q)
 
 
+
 p XOR q (with just the gates we've seen, not a specific XOR gate)
 
-
+    (p ∨ q) ∧ ¬(p ∧ q)
 
 /////////////////////////////////////
 
@@ -159,12 +165,21 @@ Order of operations
 
 In math?
 
-
-
+    ()
+    exponents
+    multiplication/division (left to right)
+    addition/subtraction (left to right)
 
 For logic statements:
 
+
 From highest (happens first) to lowest (happens last) precedence:
+
+    ()
+    negation ¬
+    AND ∧
+    OR ∨
+    implies →
 
 
 ////////////////////////////////////////////////
@@ -174,7 +189,7 @@ From highest (happens first) to lowest (happens last) precedence:
 
 Given this statement:
 
-    ¬p ∨ q ∧ r
+    ((¬p) ∨ (q ∧ r))
 
 Add () to show the order of operations.
 
@@ -188,11 +203,13 @@ p is T
 q is F
 r is F
 
-
+    ((¬T) ∨ (F ∧ F))
+       F       F
+          F
 
 ///////////////////////////////////////////
 
-Consider ¬p ∨ q → p ∧ ¬q
+Consider ((¬p) ∨ q) → (p ∧ (¬q))
 
 --> what operation do we do first?
 
@@ -210,26 +227,25 @@ variable assignments:
 
 p is T
 q is F
-r is F
 
 
-
-
+    ((¬T) ∨ F) → (T ∧ (¬F))
+    F     F    (T)    T  T
 
 ////////////////////////////////////////////////
 
 Order of operations
     ¬ evaluates right to left
-        ¬¬p is equivalent to....
+        ¬¬p is equivalent to.... ¬(¬p)
 
 
     ∧ and ∨ evaluate left to right
-        p ∧ q ∧ r is equivalent to....
-        p ∨ q ∨ r is equivalent to....
+        p ∧ q ∧ r is equivalent to.... (p ∧ q) ∧ r
+        p ∨ q ∨ r is equivalent to.... (p ∨ q) ∨ r
 
 
     → evaluates right to left
-        p → q → r is equivalent to....
+        p → q → r is equivalent to.... p → (q → r)
 
 
 
@@ -240,36 +256,36 @@ Order of operations
 Top-level operator (what happens LAST?)
 
 
-¬p ∨ q ∧ r
+(¬p) ∨ (q ∧ r)
 
 
 top-level? 
-
+    OR
 
 How is this similar to a circuit? 
-
+    The one producing the result is the top level operator
 
 
 ///////////////////////////////
 
-p ∧ q ∨ r ∧ p
+(p ∧ q) ∨ (r ∧ p)
 
 rewrite with ():
 
 
 top-level operator? 
-
+OR
 
 
 //////////////////////////////
 
-p ∧ q ∧ r ∧ s
+((p ∧ q) ∧ r) ∧ s
 
 rewrite with ():
 
 
 top-level operator?  
-
+    right-most AND
 
 ////////////////////////////////////////////////////
 
@@ -282,7 +298,7 @@ parse trees
 --> how do they relate to programming?
 
 --> what is the "top-level operator" here?
-
+        IMPLIES
 
 
 
@@ -310,19 +326,21 @@ If we have 2 variables, how many possible truth assignments?
 
     p, q
 
-
+        4
 
 
 
 If we have 3 variables, how many possible truth assignments?
 
     p, q, r
+    
+        8
 
 
 
 If we have n variables, how many possible truth assignments?
 
-
+    2^n
 
 
 
@@ -338,19 +356,25 @@ Contingent, contradictory, tautology
 
 
 contingent: 
+    some truth assignments make the output true, and some make the output false
 
     Example? 
+        p ∧ q
 
 
 
 contradictory:
+    statement that is always false
 
     Example? 
+        p ∧ ¬p
 
 
-tautology:
+tautology: 
+    statement that is always true
 
     Example? 
+        p ∨ ¬p
     
 
 ///////////////////////////////////////////
@@ -366,13 +390,20 @@ Write a truth table for:
 
 (p ∧ r) → (r ∨ ¬q)
 
-
+                  *
 -----------------------------
 p q r  #  (p ∧ r) → (r ∨ ¬q)
 -----------------------------
+T T T  #     T    T    T  F      
+T T F  #     F    T    F  F        
+T F T  #     T    T    T  T         
+F T T  #     F    T    T  F        
+T F F  #     F    T    T  T       
+F T F  #     F    T    F  F  
+F F T  #     F    T    T  T  
+F F F  #     F    T    T  T      
 
-
-
+    Tautology
 
 --> top-level operator?
 
@@ -381,7 +412,6 @@ p q r  #  (p ∧ r) → (r ∨ ¬q)
 --> how many truth assignments are there?
 
 --> how would we classify this truth table?
-
 
 /////////////////////////////////////////
 
