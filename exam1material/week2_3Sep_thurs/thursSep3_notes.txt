@@ -37,12 +37,10 @@ alignment matters!
 
 //////////////////////////////////////
 
-Complete tautology.logika
-
-
 How to check work? 
     Ctrl-Shift-W for Windows
     Command-Shift-W for Mac
+
 
 //////////////////////////////////////
 
@@ -56,6 +54,12 @@ Move to a place with no spaces
 Open CodeIVE again from the new location
 Should prompt again for Sireum home path
 
+//////////////////////////////////////
+
+Complete tautology.logika
+
+
+
 ////////////////////////////
 
 Propositional logic.
@@ -65,9 +69,17 @@ Propositional logic.
     --> these will be our boolean variables in logic statements
 
 atoms should be minimal
+<<<<<<< HEAD
 p: I am hungry 
 q: I am thirsty
 P & Q
+=======
+p: I am hungry
+q: I am thirsty
+
+p & q
+
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 - connected by logical operators
 
@@ -85,7 +97,11 @@ Which ones are propositions?
 Today is Thursday. yes
 
 
+<<<<<<< HEAD
 What time is it? no 
+=======
+What time is it? no
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 
 x == 2 yes
@@ -112,6 +128,7 @@ Suppose we have these propositional atoms:
 
 How would we express these as English sentences/conditions?
 
+<<<<<<< HEAD
     ¬p: it is not below freezing
 
     p ∧ q: it is below freezing and it is snowing
@@ -123,6 +140,14 @@ How would we express these as English sentences/conditions?
     r ∨ s: y <= 4 || x == 2;
 
     ¬r: y > 4;
+=======
+    ¬p: It is not below freezing 
+    p ∧ q: It is below freezing and it is snowing
+    p → q : if it is below freezing, then it is snowing
+    ¬p → ¬q: if it's not below freezing, then it is not snowing
+    r ∨ s: y <= 4 || x == 2
+    ¬r: y > 4
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 
 ////////////////////////////////////////
@@ -134,6 +159,7 @@ Example:
 You can't enroll for the course if you haven't taken 
 the prerequisite or the course is full.
 
+<<<<<<< HEAD
 Really saying: if you haven't taken the prerequisite or the course is full, then you can't enroll for the course
 
 
@@ -152,6 +178,30 @@ r: the course is full
 What is the *contrapositive* of our statement?
 p → ¬(¬q ∨ r)
     equivalent after DeMorgan p → q ∧ ¬r
+=======
+Really saying: if you haven't taken the prerequisite or
+    the course is full, then you can't enroll for the course
+
+--> what are the propositional atoms?
+
+p: you can enroll for the course
+q: you have taken the prerequisite
+r: the course is full
+
+--> translate to propositional logic:
+¬q ∨ r → ¬p
+
+
+What is the *contrapositive* of our statement?
+
+p → q has a contrapositive of ¬q → ¬p
+
+
+¬q ∨ r → ¬p
+has contrapositive of: p → ¬(¬q ∨ r)
+    equivalent after DeMorgan: p → q ∧ ¬r
+
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 
 
@@ -167,16 +217,24 @@ if (x <= 2 || y >= 0) {
         answer = 25;
     }
 }
-
 Propositional atoms?
+<<<<<<< HEAD
 p: x <= 2
 q: y >= 0
 r: z = 17
 s: answer = 25
 
 
+=======
+    p: x <= 2
+    q: y >= 0
+    r: z == 17
+    s: answer == 25
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 Translation? (if ... then ...)
+    (p ∨ q) ∧ ¬r → s
+
 
 (p ∨ q) ∧ ¬r → s
 
@@ -190,13 +248,25 @@ p: I am at least 16 years old
 q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 p → q
 
+only false: 
+p: T (I am at least 16)
+q: F (I can't drive)
 
 2) I'm not at least 16 years old or I can drive a car.
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 ¬p ∨ q
 
-
+p: T (I am at least 16)
+q: F (I can't drive)
 
 --> are they saying the same thing?
 yes
@@ -206,6 +276,11 @@ yes
 --> could we PROVE it? (equiv1.logika, equiv2.logika)
 the two statements have exactly the same output for every possible truth assignment
 
+Explanation:
+The two statements have exactly the same output for every possible 
+truth assignment.
+
+Not: they match 
 
 
 //////////////////////////////////
@@ -216,21 +291,39 @@ p: I am at least 16 years old
 q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 p → q
 
 
 2) If I can drive a car, then I am at least 16 years old.
+<<<<<<< HEAD
 q → p
 
+=======
+
+q → p
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 --> are they saying the same thing?
 no
 
 --> could we PROVE our answer?
+<<<<<<< HEAD
     we could find one truth assignment that makes one statement true but the other false
     p: T  q: F
     1 is false
     2 is true
+=======
+find ONE truth assignment that makes one statement true but
+the other false
+
+p: T, q: F 
+makes p → q false 
+but makes q → p true
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 //////////////////////////////////
 
@@ -238,6 +331,7 @@ Summary of equivalence.
 
 How do we prove two statements ARE equivalent?
 
+<<<<<<< HEAD
     complete two truth tables, demonstrate that for each possible truth assignment the statements
     have the same output
 
@@ -245,6 +339,16 @@ How do we prove two statements ARE equivalent?
 How do we prove two statements are NOT equivalent?
 
     find one truth assignment that makes one statement true, but the other false
+=======
+complete two truth tables
+demonstrate that for each possible truth assignment the statements
+have the same output
+
+How do we prove two statements are NOT equivalent?
+
+find ONE truth assignment that makes one statement true but
+the other false
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
 
 
@@ -269,7 +373,11 @@ if (a == 4 || a == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
+<<<<<<< HEAD
     if (a != 4 && a != 5) {
+=======
+if (a != 4 && a != 5)
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 
     }
 
@@ -287,19 +395,19 @@ if (a == 4 && b == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if (a != 4 || b != 5)
 
 //////////////////////////////
 
 DeMorgan's laws in propositional logic:
 
-¬(p ∨ q) is equivalent to... 
+¬(p ∨ q) is equivalent to... ¬p ∧ ¬q
 
     ¬p ∧ ¬q
 
 
 
-¬(p ∧ q) is equivalent to... 
+¬(p ∧ q) is equivalent to... ¬p ∨ ¬q
 
     ¬p ∨ ¬q
 
@@ -310,7 +418,12 @@ DeMorgan's laws in propositional logic:
 (demorgan1.logika and demorgan2.logika)
 
 
+equivalent because every possible truth assignment gives the 
+same output for both statements
 
+/////////////////////////
+
+<-- stopped here, will continue next Tuesday
 
 
 ////////////////////////

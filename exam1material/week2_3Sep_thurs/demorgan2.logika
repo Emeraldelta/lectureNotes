@@ -1,3 +1,4 @@
+<<<<<<< HEAD
            *
 --------------
 p q # (!p) & (!q)
@@ -6,6 +7,16 @@ T T #  F   F  F
 T F #  F   F  T
 F T #  T   F  F
 F F #  T   T  T
+=======
+         *
+--------------
+p q # !p & !q
+---------------
+T T # F  F F
+T F # F  F T
+F T # T  F F
+F F # T  T T
+>>>>>>> fdd287392cfb4b71f2d29f236418fa49896da3d6
 ---------------
 
 Contingent
